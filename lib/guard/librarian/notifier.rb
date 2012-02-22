@@ -1,16 +1,16 @@
 # encoding: utf-8
 module Guard
-  class Bundler
+  class Librarian
     class Notifier
 
       def self.guard_message(result, duration)
         case result
         when 'up-to-date'
-          "Bundle already up-to-date"
+          "Cookbooks already up-to-date"
         when true
-          "Bundle has been updated\nin %.1f seconds." % [duration]
+          "Cookbooks have been updated\nin %.1f seconds." % [duration]
         else
-          "Bundle can't be updated,\nplease check manually."
+          "Cookbooks can't be updated,\nplease check manually."
         end
       end
 
@@ -27,7 +27,7 @@ module Guard
         message = guard_message(result, duration)
         image   = guard_image(result)
 
-        ::Guard::Notifier.notify(message, :title => 'Bundle update', :image => image)
+        ::Guard::Notifier.notify(message, :title => 'Cookbooks updated', :image => image)
       end
 
     end

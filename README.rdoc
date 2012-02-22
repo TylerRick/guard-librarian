@@ -1,9 +1,6 @@
-= Guard::Bundler
+= Guard::Librarian
 
-Bundler guard allows to automatically & intelligently install/update bundle when needed.
-
-- Compatible with Bundler 1.0.x
-- Tested on Ruby 1.8.6, 1.8.7 & 1.9.2.
+Librarian guard allows to automatically & intelligently install/update chef cookbooks when needed.
 
 == Install
 
@@ -11,15 +8,15 @@ Please be sure to have {Guard}[https://github.com/guard/guard] installed before 
 
 Install the gem:
 
-    gem install guard-bundler
+    gem install guard-librarian
 
-Add it to your Gemfile (inside test group):
+Add it to your Gemfile:
 
-    gem 'guard-bundler'
+    gem 'guard-librarian'
 
 Add guard definition to your Guardfile by running this command:
 
-    guard init bundler
+    guard init librarian
 
 == Usage
 
@@ -27,22 +24,32 @@ Please read {Guard usage doc}[https://github.com/guard/guard#readme]
 
 == Guardfile
 
-Bundler guard can be really be adapted to all kind of projects.
-Advice: place Bundler guard before other is recommended.
+=== Simple example
 
-=== Standard ruby gems
-
-    guard 'bundler' do
-      watch('Gemfile')
-      # Uncomment next line if Gemfile contain `gemspec' command
-      # watch(/^.+\.gemspec/)
+    guard 'librarian' do
+      watch('Cheffile')
     end
 
 == Options
 
+You can pass options to librarian-chef with:
+
+    guard 'librarian', :cli => '--clean --verbose' do
+      ...
+    end
+
+By default it will run on start, but this can be disabled with :run_on_start =>
+false.
+
+When it runs on start, it will assume your Cheffile is in the current
+directory containing your Guardfile. (It doesn't look at the paths specified by
+your 'watch' commands except when those files change.) So if your Cheffile is
+in a subdirectory, you will probably see "Cannot find Cheffile!" and will want
+to set :run_on_start => false.
+
 You can disable desktop notification with:
 
-    guard 'bundler', :notify => false do
+    guard 'librarian', :notify => false do
       ...
     end
 
@@ -50,12 +57,13 @@ Please read {Guard doc}[https://github.com/guard/guard#readme] for more info abo
 
 == Development
 
-- Source hosted at {GitHub}[https://github.com/guard/guard-bundler]
-- Report issues/Questions/Feature requests on {GitHub Issues}[https://github.com/guard/guard-bundler/issues]
+- Source hosted at {GitHub}[https://github.com/TylerRick/guard-librarian]
+- Report issues/Questions/Feature requests on {GitHub Issues}[https://github.com/TylerRick/guard-librarian/issues]
 
 Pull requests are very welcome! Make sure your patches are well tested. Please create a topic branch for every separate change
 you make.
 
 == Authors
 
-{Yann Lugrin}[https://github.com/yannlugrin]
+{Yann Lugrin}[https://github.com/yannlugrin] (created guard-bundler)
+{Tyler Rick}[https://github.com/TylerRick] (adapted guard-bundler to work with Cheffile)

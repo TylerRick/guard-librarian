@@ -1,0 +1,3 @@
+guard 'librarian' do
+  watch('Cheffile')
+end

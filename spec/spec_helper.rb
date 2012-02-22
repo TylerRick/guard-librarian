@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'guard/bundler'
+require 'guard/librarian'
 require 'rspec'
 
 Dir["#{File.expand_path('..', __FILE__)}/support/**/*.rb"].each { |f| require f }
